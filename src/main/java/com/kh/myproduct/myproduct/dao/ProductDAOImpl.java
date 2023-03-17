@@ -87,7 +87,7 @@ public class ProductDAOImpl implements ProductDAO{
     sb.append("   set pname = :pname, ");
     sb.append("       quantity = :quantity, ");
     sb.append("       price = :price ");
-    sb.append(" where product_id = :id; ");
+    sb.append(" where product_id = :id ");
 
     SqlParameterSource param = new MapSqlParameterSource()
         .addValue("pname",product.getPname())
@@ -158,12 +158,12 @@ public class ProductDAOImpl implements ProductDAO{
   };
 
   RowMapper<Product> rowMapper2 = (rs, rowNum) -> {
-      Product product = new Product();
-      product.setProductId(rs.getLong("product_id"));
-      product.setPname(rs.getString("pname"));
-      product.setQuantity(rs.getLong("quantity"));
-      product.setPrice(rs.getLong("price"));
-      return product;
+    Product product = new Product();
+    product.setProductId(rs.getLong("product_id"));
+    product.setPname(rs.getString("pname"));
+    product.setQuantity(rs.getLong("quantity"));
+    product.setPrice(rs.getLong("price"));
+    return product;
   };
 
   //수동 매핑
