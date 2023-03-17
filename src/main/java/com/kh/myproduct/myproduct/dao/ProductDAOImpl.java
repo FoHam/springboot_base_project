@@ -41,9 +41,10 @@ public class ProductDAOImpl implements ProductDAO{
     template.update(sb.toString(),param,keyHolder,new String[]{"product_id"});
 //    template.update(sb.toString(),param,keyHolder,new String[]{"product_id","pname"});
 
-    long key = keyHolder.getKey().longValue();  // 상품아이디
-//    String pnameid = (String) keyHolder.getKeys().get("pname");
-    return key;
+    long productId = keyHolder.getKey().longValue(); //상품아이디
+
+    //String pname = (String)keyHolder.getKeys().get("pname");
+    return productId;
   }
 
   /**
@@ -107,9 +108,7 @@ public class ProductDAOImpl implements ProductDAO{
   @Override
   public int delete(Long productId) {
     String sql = "delete from product where product_id = :id ";
-
-    template.update(sql,Map.of("id",productId));
-    return 0;
+    return template.update(sql,Map.of("id",productId));
   }
 
   /**
